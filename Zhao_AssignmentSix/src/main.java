@@ -1,5 +1,7 @@
 //Songren Zhao
 //CSC 22100
+//szhao003@citymail.cuny.edu
+//23390916
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -38,16 +40,19 @@ public class main extends JFrame
     }
     public static StringBuffer convertToPostfix(StringBuffer infix)
     {
-        Stack<Character> stack = new Stack<Character>();
+        int count = 0;
+        Stack<Character> stack = new Stack<>();
         StringBuffer postFix = new StringBuffer("");
         stack.push('(');
         infix.append(')');
-        for(int count = 0; !stack.isEmpty(); count++)
+        while(!stack.isEmpty())
         {
-            if(Character.isDigit(infix.charAt(count)))
+            if(Character.isDigit(infix.charAt(count)) || Character.isLetter(infix.charAt(count)))
                 postFix.append(infix.charAt(count) + " ");
             else if(infix.charAt(count) == '(')
+            {
                 stack.push('(');
+            }
             else if(isOperator(infix.charAt(count)))
             {
                 while(isOperator(stack.peek()) && precedence(infix.charAt(count),stack.peek()))
@@ -60,9 +65,8 @@ public class main extends JFrame
                     postFix.append(stack.pop() + " ");
                 stack.pop();
             }
+            count++;
         }
-        while(!stack.isEmpty())
-            postFix.append(stack.pop() + " ");
         return postFix;
     }
     public main()
