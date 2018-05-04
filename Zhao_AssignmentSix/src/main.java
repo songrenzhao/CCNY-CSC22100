@@ -1,7 +1,5 @@
 //Songren Zhao
 //CSC 22100
-//szhao003@citymail.cuny.edu
-//23390916
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
